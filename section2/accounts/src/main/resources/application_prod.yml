@@ -1,0 +1,14 @@
+spring:
+  config:
+    activate:
+      on-profile: "prod"
+
+
+build:
+  version: "1.0"
+
+accounts:
+  message: "Welcome to Accounts Microservice"
+  contactDetails:
+    name: "Murilo Prod"
+    email: "tutor@eazybytes.com"
