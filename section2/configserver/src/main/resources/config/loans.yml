@@ -1,10 +1,6 @@
 server:
   port: 8090
 spring:
-  application:
-    name: "loans"
-  profiles:
-    active: "prod"
   datasource:
     url: jdbc:h2:mem:testdb
     driverClassName: org.h2.Driver
@@ -19,4 +15,18 @@ spring:
       ddl-auto: update
     show-sql: true
   config:
-    import: "optional:configserver:http://localhost:8071/"
+    import:
+      - "loans_qa.yml"
+      - "loans_prod.yml"
+  profiles:
+    active:
+      - "qa"
+
+build:
+  version: "3.0"
+
+accounts:
+  message: "Welcome to Loans Microservice"
+  contactDetails:
+    name: "Eazy Bytes"
+    email: "tutor@eazybytes.com"

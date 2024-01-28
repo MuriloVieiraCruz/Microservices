@@ -196,5 +196,4 @@ public class LoansController {
                 .status(HttpStatus.OK)
                 .body(loansContactInfoDto);
     }
-
 }
