@@ -6,6 +6,7 @@ import com.eazybytes.accounts.dto.CustomerDto;
 import com.eazybytes.accounts.dto.ErrorResponseDto;
 import com.eazybytes.accounts.dto.ResponseDto;
 import com.eazybytes.accounts.service.IAccountsService;
+import io.github.resilience4j.retry.annotation.Retry;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.media.Content;
 import io.swagger.v3.oas.annotations.media.Schema;
@@ -15,6 +16,8 @@ import io.swagger.v3.oas.annotations.tags.Tag;
 import jakarta.validation.Valid;
 import jakarta.validation.constraints.Pattern;
 import lombok.AllArgsConstructor;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.http.HttpStatus;
@@ -40,6 +43,8 @@ public class AccountsController {
 
     @Autowired
     private AccountsContactInfoDto accountsContactInfoDto;
+
+    private static final Logger logger = LoggerFactory.getLogger(AccountsController.class);
 
     public AccountsController(IAccountsService iAccountsService) {
         this.iAccountsService = iAccountsService;
@@ -189,10 +194,20 @@ public class AccountsController {
             )
     }
     )
+    @Retry(name = "conatctInfo", fallbackMethod = "conatctInfoFallback")
     @GetMapping("/contact")
-    public ResponseEntity<AccountsContactInfoDto> buildInfo() {
+    public ResponseEntity<String> conatctInfo() {
+        logger.debug("Método invocado pelo retry");
+        throw new RuntimeException("Teste Exception");
+        /*return ResponseEntity
+                .status(HttpStatus.OK)
+                .body("accountsContactInfoDto")*/
+    }
+
+    public ResponseEntity<String> conatctInfoFallback(Throwable throwable) {
+        logger.debug("Método invocado pelo fallBack");
         return ResponseEntity
                 .status(HttpStatus.OK)
-                .body(accountsContactInfoDto);
+                .body("0.9");
     }
 }

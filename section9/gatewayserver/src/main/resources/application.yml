@@ -9,6 +9,9 @@ spring:
         locator:
           enabled: false
           lowercaseServiceId: true
+      httpclient:
+        connectTimeout: 1000
+        readTimeout: 2s
 
 management:
   endpoints:
