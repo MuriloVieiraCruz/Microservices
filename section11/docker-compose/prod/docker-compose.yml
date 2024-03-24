@@ -94,6 +94,19 @@ services:
       file: common-config.yml
       service: network-deploy-services
 
+  tempo:
+    image: grafana/tempo
+    container_name: tempo
+    command: -config.file /etc/tempo-config.yml
+    ports:
+      - "3110:3100"
+      - "4317:4317"
+    volumes:
+      - ../observability/tempo/tempo.yml:/etc/tempo-config.yml
+    extends:
+      file: common-config.yml
+      service: network-deploy-services
+
   grafana:
     image: grafana/grafana:latest
     environment:
@@ -106,7 +119,6 @@ services:
       - sh
       - -euc
       - | 
-        EOF
         /run.sh
     ports:
       - "3000:3000"
@@ -205,6 +217,8 @@ services:
     extends:
       file: common-config.yml
       service: microservice-base-config
+    environment:
+      OTEL_SERVICE_NAME: "configserver"
 
   eurekaserver:
     image: "muriloitaliano/eurekaserver:s11"
@@ -224,6 +238,7 @@ services:
       file: common-config.yml
       service: microservice-configserver-config
     environment:
+      OTEL_SERVICE_NAME: "eurekaserver"
       SPRING_APPLICATION_NAME: "eurekaserver"
 
   accounts:
@@ -243,6 +258,7 @@ services:
       retries: 20
       start_period: 10s
     environment:
+      OTEL_SERVICE_NAME: "accounts"
       SPRING_APPLICATION_NAME: "accounts"
     extends:
       file: common-config.yml
@@ -265,6 +281,7 @@ services:
       retries: 20
       start_period: 10s
     environment:
+      OTEL_SERVICE_NAME: "loans"
       SPRING_APPLICATION_NAME: "loans"
     extends:
       file: common-config.yml
@@ -287,6 +304,7 @@ services:
       retries: 20
       start_period: 10s
     environment:
+      OTEL_SERVICE_NAME: "cards"
       SPRING_APPLICATION_NAME: "cards"
     extends:
       file: common-config.yml
@@ -311,6 +329,7 @@ services:
       retries: 10
       start_period: 10s
     environment:
+      OTEL_SERVICE_NAME: "gatewayserver"
       SPRING_APPLICATION_NAME: "gatewayserver"
     extends:
       file: common-config.yml

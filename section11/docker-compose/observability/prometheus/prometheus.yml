@@ -32,4 +32,4 @@ scrape_configs:
   - job_name: 'configserver'
     metrics_path: '/actuator/prometheus'
     static_configs:
-      - targets: [ 'eurekaserver:8071' ]
+      - targets: [ 'configserver:8071' ]
