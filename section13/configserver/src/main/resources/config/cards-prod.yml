@@ -1,0 +1,8 @@
+build:
+  version: "1.0"
+
+accounts:
+  message: "Welcome to Cards Microservice"
+  contactDetails:
+    name: "Murilo Prod"
+    email: "tutor@eazybytes.com"
