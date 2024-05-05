@@ -6,17 +6,17 @@ spring:
         name: "message"
     cloud:
         function:
-            definition:
-                - email
-                - sms
+            definition: email, sms
         stream:
             bindings:
-                email-in-0:
+                emailsms-in-0:
                     destination: send-communication
                     group: ${spring.application.name}
-                sms-in-0:
-                    destination: send-communication
-                    group: ${spring.application.name}
+#                sms-in-0:
+#                    destination: send-communication
+#                    group: ${spring.application.name}
+                emailsms-out-0:
+                    destination: communication-sent
     rabbitmq:
         host: localhost
         port: 5672
