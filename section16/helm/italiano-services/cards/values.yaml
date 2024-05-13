@@ -1,0 +1,26 @@
+#This is a YAML-formatted file
+# Declare variables to be passed into your templates 
+
+deploymentName: cards-deployment
+appLabel: cards
+appName: cards
+replicaCount: 1
+
+image:
+  repository: muriloitaliano/cards
+  tag: s12
+
+containerPort: 9000
+
+serviceName: cards
+service:
+  type: ClusterIP
+  port: 9000
+  targetPort: 9000
+
+appname_enabled: true
+profile_enabled: true
+config_enabled: true
+eureka_enabled: true
+resourceserver_enabled: false
+otel_enabled: true

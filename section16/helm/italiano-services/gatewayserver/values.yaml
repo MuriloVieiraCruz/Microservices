@@ -1,0 +1,26 @@
+#This is a YAML-formatted file
+# Declare variables to be passed into your templates 
+
+deploymentName: gatewayserver-deployment
+appLabel: gatewayserver
+appName: gatewayserver
+replicaCount: 1
+
+image:
+  repository: muriloitaliano/gatewayserver
+  tag: s12
+
+containerPort: 8072
+
+serviceName: gatewayserver
+service:
+  type: LoadBalancer
+  port: 8072
+  targetPort: 8072
+
+appname_enabled: true
+profile_enabled: true
+config_enabled: true
+eureka_enabled: true
+resourceserver_enabled: true
+otel_enabled: true

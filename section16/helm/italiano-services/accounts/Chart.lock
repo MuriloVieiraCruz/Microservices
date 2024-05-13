@@ -1,0 +1,6 @@
+dependencies:
+- name: italiano-common
+  repository: file://../../italiano-common
+  version: 0.1.0
+digest: sha256:482cc3c2e6a0e1532c1bcc010188409f78e03506bc9166a9bdcce569653b35ca
+generated: "2024-05-06T21:43:11.1262666-03:00"

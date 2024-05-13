@@ -1,0 +1,26 @@
+#This is a YAML-formatted file
+# Declare variables to be passed into your templates 
+
+deploymentName: eurekaserver-deployment
+appLabel: eurekaserver
+appName: eurekaserver
+replicaCount: 1
+
+image:
+  repository: muriloitaliano/eurekaserver
+  tag: s12
+
+containerPort: 8070
+
+serviceName: eurekaserver
+service:
+  type: ClusterIP
+  port: 8070
+  targetPort: 8070
+
+appname_enabled: true
+profile_enabled: false
+config_enabled: true
+eureka_enabled: false
+resourceserver_enabled: false
+otel_enabled: true

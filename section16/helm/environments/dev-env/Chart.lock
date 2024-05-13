@@ -1,0 +1,24 @@
+dependencies:
+- name: italiano-common
+  repository: file://../../italiano-common
+  version: 0.1.0
+- name: configserver
+  repository: file://../../italiano-services/configserver
+  version: 0.1.0
+- name: eurekaserver
+  repository: file://../../italiano-services/eurekaserver
+  version: 0.1.0
+- name: accounts
+  repository: file://../../italiano-services/accounts
+  version: 0.1.0
+- name: cards
+  repository: file://../../italiano-services/cards
+  version: 0.1.0
+- name: loans
+  repository: file://../../italiano-services/loans
+  version: 0.1.0
+- name: gatewayserver
+  repository: file://../../italiano-services/gatewayserver
+  version: 0.1.0
+digest: sha256:c2adcc077ec28d9d15392d1af9d146d6d25a26adf2322841332136b8846a9098
+generated: "2024-05-11T10:58:14.1980038-03:00"
